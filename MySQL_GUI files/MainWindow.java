@@ -2,6 +2,7 @@
 Main file for GUI.
 Only works with one table right now.
 Will be adding more functionality to it soon.
+Will be adding a login window soon as well.
 
 Open to all who want to help make this code better in any way possible.
 

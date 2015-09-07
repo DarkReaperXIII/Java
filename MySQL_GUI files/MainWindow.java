@@ -1,3 +1,12 @@
+/**
+Main file for GUI.
+Only works with one table right now.
+Will be adding more functionality to it soon.
+
+Open to all who want to help make this code better in any way possible.
+
+*/
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -45,6 +54,8 @@ public class MainWindow {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		/**
+		check to see if there is an error connecting to database*/
 		try {
 			con=DriverManager.getConnection("jdbc:mysql://localhost/employeedb","root","790053aL");
 		} catch (SQLException e1) {
@@ -105,10 +116,11 @@ public class MainWindow {
 		frame.getContentPane().add(lblEmployeeTable);
 	}
 
-	public void setVisible() {
+	/*function used to allow other windows to pull MainWindow back up*/
+	public void setVisible() { 
 		frame.setVisible(true);
 	}
-	
+	/*allows me to pass Connection object to other functions*/
 	public static Connection dbConnection(){
 		Connection con;
 		try {

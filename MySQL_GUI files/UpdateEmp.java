@@ -1,3 +1,10 @@
+/**
+Code for allowing user to update Employee info
+does not require user to update all fields
+
+Open to any and all suggestions to help make code better
+*/
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -69,6 +76,10 @@ public class UpdateEmp {
 		scrollPane.setBounds(10, 272, 708, 129);
 		frame.getContentPane().add(scrollPane);
 		
+		/**
+		 * Prints table to allow user to see current values in each column 
+		 * before committing updates
+		*/
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable(dtm);
 		scrollPane.setViewportView(table);
@@ -90,6 +101,8 @@ public class UpdateEmp {
 			JOptionPane.showMessageDialog(null, e1);
 		}
 		
+		/**performs UPDATE query on table. Can more than likely be written better. Open to any and all
+		suggestions*/
 		JButton submitBtn = new JButton("Submit");
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,10 +116,13 @@ public class UpdateEmp {
 				PreparedStatement stmt6=null;
 				
 				try{
-					
-					
 					emp_idCurrent=emp_idCurrentTextField.getText();
 					
+					/**checks to see if textField is empty
+					if it is empty, not changes get made to that particular variable.
+					
+					Done so blank textfields do add empty strings into table.
+					Repeated for all text fields.*/
 					if(fnameTextField.getText().isEmpty()){
 						
 					} else{
@@ -119,7 +135,7 @@ public class UpdateEmp {
 						stmt1.setString(2, emp_idCurrent);
 						stmt1.executeUpdate();
 					}
-					
+					//repeat 2
 					if(lnameTextField.getText().isEmpty()){
 						
 					} else {
@@ -133,6 +149,7 @@ public class UpdateEmp {
 						stmt2.executeUpdate();
 					}
 					
+					//repeat 3
 					if(emp_idTextField.getText().isEmpty()){
 						
 					} else {
@@ -145,6 +162,8 @@ public class UpdateEmp {
 						stmt3.setString(2, emp_idCurrent);
 						stmt3.executeUpdate();
 					}
+					
+					//repeat 4
 					if (emailTextField.getText().isEmpty()){
 						
 					} else {
@@ -158,6 +177,7 @@ public class UpdateEmp {
 						stmt4.executeUpdate();
 					}
 					
+					//repeat 5
 					if (ageTextField.getText().isEmpty()){
 						
 					} else {
@@ -170,7 +190,8 @@ public class UpdateEmp {
 						stmt5.setString(2, emp_idCurrent);
 						stmt5.executeUpdate();
 					}
-
+					
+					//repeat 6
 					if (occTextField.getText().isEmpty()){
 	
 					} else {
@@ -184,6 +205,7 @@ public class UpdateEmp {
 						stmt6.executeUpdate();
 					}
 					
+					/*Resets text fields after updates have been made*/
 					fnameTextField.setText("");
 					lnameTextField.setText("");
 					emp_idTextField.setText("");
@@ -191,6 +213,9 @@ public class UpdateEmp {
 					ageTextField.setText("");
 					occTextField.setText("");
 					emp_idCurrentTextField.setText("");
+					
+					/**reprints table to see allow user to see changes.
+					Open to ways to rewrite to make better*/
 					
 					DefaultTableModel dtm = new DefaultTableModel();
 					table = new JTable(dtm);
@@ -281,6 +306,8 @@ public class UpdateEmp {
 		infoTitleLbl.setBounds(421, 0, 230, 41);
 		frame.getContentPane().add(infoTitleLbl);
 		
+		/**
+		Closes UpdateEmp window and reopens MainWindow*/
 		JButton menuBtn = new JButton("Main Menu");
 		menuBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -303,7 +330,8 @@ public class UpdateEmp {
 		lblNewLabel.setBounds(10, 17, 150, 24);
 		frame.getContentPane().add(lblNewLabel);
 	}
-
+	
+	//function used to allow other buttons to pull up UpdateEmp window
 	public void setVisible() {
 		frame.setVisible(true);
 		

@@ -1,3 +1,9 @@
+/**
+code for adding employee info to table
+Does not require user to add all required fields 
+
+Open to any and all suggestions for changes to be made to make code better.*/
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -64,8 +70,9 @@ public class AddEmp {
 		frame.setBounds(100, 100, 700, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		Connection con=MainWindow.dbConnection();
+		Connection con=MainWindow.dbConnection();//gets connection from dbConnection function
 		
+		/*Closes AddEmp windo and reopens MainWindow*/
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,7 +144,7 @@ public class AddEmp {
 		frame.getContentPane().add(infoTitleLbl);
 		
 		
-		
+		/*performs INSERT query into database*/
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,6 +153,8 @@ public class AddEmp {
 				try{
 					insert="INSERT INTO employee(fname, lname, emp_id, email, age, occupation) "
 							+ "values (?,?,?,?,?,?)";
+					/**
+					gets input from textFields and assigns them to proper variables*/
 					fname=fnameTextField.getText();
 					lname=lnameTextField.getText();
 					emp_id=emp_idTextField.getText();
@@ -153,6 +162,9 @@ public class AddEmp {
 					age=ageTextField.getText();
 					occupation=occTextField.getText();
 					
+					/**
+					plugs appropriate variables into insert string
+					to properly execute INSERT query to table*/
 					stmt = con.prepareStatement(insert);
 					stmt.setString(1,fname);
 					stmt.setString(2, lname);
@@ -162,7 +174,7 @@ public class AddEmp {
 					stmt.setString(6, occupation);
 					stmt.executeUpdate();
 					
-					
+					//clears textFields after INSERT is executed
 					fnameTextField.setText("");
 					lnameTextField.setText("");
 					emp_idTextField.setText("");
@@ -170,6 +182,9 @@ public class AddEmp {
 					ageTextField.setText("");
 					occTextField.setText("");
 					
+					/*Reprints table and values to see new info that was added.
+					Can more than likely be written better.
+					Open to any and all suggestion*/
 					DefaultTableModel dtm = new DefaultTableModel();
 					table = new JTable(dtm);
 					scrollPane.setViewportView(table);
@@ -208,6 +223,8 @@ public class AddEmp {
 		scrollPane.setBounds(10, 209, 664, 145);
 		frame.getContentPane().add(scrollPane);
 		
+		/**prints table to be seen for those who want know 
+		what is in table currently before pressing Submit*/
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable(dtm);
 		scrollPane.setViewportView(table);
@@ -229,7 +246,8 @@ public class AddEmp {
 			JOptionPane.showMessageDialog(null, e1);
 		}
 	}
-
+	
+	//function to be called to allow MainWindow to pull up AddEmp window
 	public void setVisible() {
 		frame.setVisible(true);
 		

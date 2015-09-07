@@ -1,3 +1,10 @@
+/**
+Code for allowing user to delete Employee info
+Deletes employee based on Employee ID given by user
+
+Open to any and all suggestions to help make code better
+*/
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,6 +67,7 @@ public class DeleteEmp {
 		MainWindow mw = new MainWindow();
 		Connection con=mw.dbConnection();//gets Connection obj from MainWindow function
 		
+		//closes DeleteEmp window and reopens MainWindow
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,13 +87,16 @@ public class DeleteEmp {
 		table = new JTable(dtm);
 		scrollPane.setViewportView(table);
 		
+		/**Allows uers to delete employee from table.
+		user must specify employee by Employee ID.
+		Uses DELETE query*/
 		btnDelete = new JButton("Delete Employee");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String emp_idDelete;
 				String delete;
 				PreparedStatement stmt=null;
-				delete="DELETE FROM employee "
+				delete="DELETE FROM employee " //holds string for DELETE query
 						+ "WHERE emp_id = ?";
 				emp_idDelete=delTextField.getText();
 				try {
@@ -116,7 +127,7 @@ public class DeleteEmp {
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, e1);
 				}
-				delTextField.setText("");
+				delTextField.setText(""); //resets textField after query execution
 			}
 		});
 		btnDelete.setBounds(10, 271, 166, 36);
@@ -152,7 +163,8 @@ public class DeleteEmp {
 			JOptionPane.showMessageDialog(null, e1);
 		}
 	}
-
+	
+	//allows other buttons to pull up DeleteEmp window
 	public void setVisible() {
 		frame.setVisible(true);
 		

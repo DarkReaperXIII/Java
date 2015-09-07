@@ -1,5 +1,9 @@
 Employee table column info.
 
+For anybody looking at the code trying to figure out what the values for each column are
+
+Table Name: employee 
+
 Columns:
 fname varchar(255) 
 lname varchar(255) 

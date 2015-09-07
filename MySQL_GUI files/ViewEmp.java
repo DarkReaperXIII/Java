@@ -1,3 +1,9 @@
+/**
+Code for allowing user to view info in table
+
+Open to any and all suggestions to help make code better
+*/
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -41,7 +47,7 @@ public class ViewEmp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		String selectQuery="SELECT * FROM employee";
+		String selectQuery="SELECT * FROM employee"; //string to hold SELECT query
 		frame = new JFrame();
 		frame.setBounds(100, 100, 846, 382);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +55,7 @@ public class ViewEmp {
 		MainWindow mw = new MainWindow();
 		Connection con=mw.dbConnection();//gets Connection obj from MainWindow function
 		
+		/**closes ViewEmp window and reopens MainWindow*/
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +71,8 @@ public class ViewEmp {
 		scrollPane.setBounds(10, 11, 810, 139);
 		frame.getContentPane().add(scrollPane);
 		
+		/**prints table data for user to see all records.
+		surrounded with JScrollPane if number of records exceeds space allocated for table*/
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable(dtm);
 		scrollPane.setViewportView(table);
@@ -84,7 +93,8 @@ public class ViewEmp {
 			JOptionPane.showMessageDialog(null, e1);
 		}
 	}
-
+	
+	//function to alllow other buttons to pull up ViewEmp window
 	public void setVisible() {
 		frame.setVisible(true);
 		

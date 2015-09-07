@@ -1,0 +1,9 @@
+Employee table column info.
+
+Columns:
+fname varchar(255) 
+lname varchar(255) 
+emp_id varchar(4) 
+email varchar(255) 
+age varchar(2) 
+occupation varchar(255)
